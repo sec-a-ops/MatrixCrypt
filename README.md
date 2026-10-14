@@ -124,7 +124,48 @@ process reconstructs the original image.
 - XOR Operations
 
 ---
+## ⏱️ Algorithm Complexity
 
+Let an image contain:
+
+```text
+N = Height × Width × Channels
+```
+
+pixel values.
+
+### Encryption
+
+MatrixCrypt performs two major operations:
+
+1. **Pixel Permutation** – rearranges the image pixels.
+2. **XOR Diffusion** – generates a chaotic key stream and applies XOR to every pixel value.
+
+Both operations process data proportional to the image size.
+
+```text
+Encryption Time Complexity: O(N)
+```
+
+### Decryption
+
+Decryption applies XOR diffusion, followed by the inverse pixel permutation.
+
+The inverse permutation is constructed using MATLAB's `sort`, so the current implementation can require:
+
+```text
+Decryption Time Complexity: O(N log N)
+```
+
+The image and chaotic key stream also require memory proportional to the input size.
+
+```text
+Space Complexity: O(N)
+```
+
+Therefore, processing time and memory usage increase as image size increases.
+
+---
 ## 📂 Project Structure
 
 ```text
